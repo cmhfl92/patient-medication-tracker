@@ -2,6 +2,7 @@
 
 const BASE_URL = 'https://localhost:3001'; //'/patient'?
 
+//patient api
 export async function getPatients() {
   const res = await fetch(BASE_URL);
   if (!res.ok) throw new Error('Failed to get patients');
