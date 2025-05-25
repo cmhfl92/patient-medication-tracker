@@ -3,8 +3,8 @@ export default function Patient() {
     <>
       <div className='overflow-hidden px-4 py-8 sm:px-8'>
         <table className='w-full table-auto border-collapse text-sm'>
-          <caption className='caption-top pb-4 text-xs text-gray-500 dark:text-gray-400'>
-            Patient Page
+          <caption className='caption-top pb-4 text-lg text-gray-500 dark:text-gray-400'>
+            Patients
           </caption>
           <thead>
             <tr>
