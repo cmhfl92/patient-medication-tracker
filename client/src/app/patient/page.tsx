@@ -1,4 +1,9 @@
+'use client';
+import { useState } from 'react';
+import { PatientInfo } from '../types/patient';
+
 export default function Patient() {
+  const [patient, setPatient] = useState<PatientInfo[]>([]);
   return (
     <>
       <div className='overflow-hidden px-4 py-8 sm:px-8'>
