@@ -1,9 +1,14 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PatientInfo } from '../types/patient';
+import * as api from '../api/api';
 
 export default function Patient() {
-  const [patient, setPatient] = useState<PatientInfo[]>([]);
+  const [patients, setPatients] = useState<PatientInfo[]>([]);
+
+  useEffect(() => {
+    api.getPatients().then(setPatients).catch(console.error);
+  });
   return (
     <>
       <div className='overflow-hidden px-4 py-8 sm:px-8'>
