@@ -8,7 +8,7 @@ export default function Patient() {
 
   useEffect(() => {
     api.getPatients().then(setPatients).catch(console.error);
-  });
+  }, []);
   return (
     <>
       <div className='overflow-hidden px-4 py-8 sm:px-8'>
