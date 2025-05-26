@@ -2,9 +2,14 @@
 import { useEffect, useState } from 'react';
 import { PatientInfo } from '../types/patient';
 import * as api from '../api/api';
+import { PatientFormModal } from '../components/modal';
 
 export default function Patient() {
   const [patients, setPatients] = useState<PatientInfo[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
     api.getPatients().then(setPatients).catch(console.error);
@@ -12,6 +17,12 @@ export default function Patient() {
   return (
     <>
       <div className='overflow-hidden px-4 py-8 sm:px-8'>
+        <button
+          className='ml-3 hidden rounded-lg bg-gray-100 px-2 py-0.5 text-xs/6 font-semibold whitespace-nowrap text-gray-700 lg:block cursor-pointer'
+          onClick={openModal}
+        >
+          Add Patient
+        </button>
         <table className='w-full table-auto border-collapse text-sm'>
           <caption className='caption-top pb-4 text-lg text-gray-500 dark:text-gray-400'>
             Patients
@@ -49,6 +60,7 @@ export default function Patient() {
             </tr>
           </tbody>
         </table>
+        <PatientFormModal open={isModalOpen} onClose={closeModal} />
       </div>
     </>
   );
