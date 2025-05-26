@@ -43,3 +43,9 @@ async function createPatient(req: any, res: any) {
   patients.push(patient);
   res.status(201).json(patient);
 }
+
+module.exports = {
+  listPatients,
+  getPatientById,
+  createPatient,
+};
