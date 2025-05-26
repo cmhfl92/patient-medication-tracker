@@ -2,8 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import { initDB } from './db/db';
 
-const patientsRouter = require('./routes/patients');
-const errorHandler = require('./middleware/errorHandler');
+const patientsRouter = require('../routes/patients');
+const errorHandler = require('../middleware/errorHandler');
 
 const app = express();
 const PORT = 3001;

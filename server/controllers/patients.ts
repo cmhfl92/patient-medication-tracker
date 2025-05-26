@@ -1,49 +1,57 @@
-import { stringify } from 'querystring';
+import { Request, Response } from 'express';
+import { initDB } from '../src/db/db';
 
-function delay(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-let patients: any[] = []; //need help with this part, I know we are using the sql DB so I don't think I need this?
-let nextId = 1;
-
-async function listPatients(req: any, res: any) {
-  await delay(500);
+async function listPatients(req: Request, res: Response) {
+  const db = await initDB();
+  const patients = await db.all('SELECT * FROM patients');
   res.json(patients);
 }
 
-async function getPatientById(req: any, res: any) {
-  await delay(400);
+async function getPatientById(req: Request, res: Response) {
+  const db = await initDB();
   const id = parseInt(req.params.id, 10);
-  const patient = patients.find(patient => patient.id === id);
+  const patient = await db.get('SELECT * FROM patients WHERE id = ?', [id]);
 
   if (!patient) {
     const err = new Error('Patient Not found');
-    //I am missing the err.status since status doesn't exist
+    //@ts-ignore
+    err.status = 404;
     throw err;
   }
   res.json(patient);
 }
 
-async function createPatient(req: any, res: any) {
-  await delay(400);
+async function createPatient(req: Request, res: Response) {
+  const db = await initDB();
   const { name, dob, email } = req.body;
-  if (typeof name !== 'string') {
+
+  if (!name || typeof name !== 'string') {
     const err = new Error('Name is required!');
+    //@ts-ignore
+    err.status = 400;
     throw err;
   }
-  if (typeof dob !== 'string') {
+  if (!dob || typeof dob !== 'string') {
     const err = new Error('DOB is required!');
+    //@ts-ignore
+    err.status = 400;
     throw err;
   }
-  if (typeof email !== 'string') {
+  if (!email || typeof email !== 'string') {
     const err = new Error('Email is required!');
-    //I am missing the err.status since status doesn't exist
+    //@ts-ignore
+    err.status = 400;
     throw err;
   }
-  const patient = { id: nextId++, name, dob, email };
-  patients.push(patient);
-  res.status(201).json(patient);
+  const result = await db.run(
+    `INSERT INTO patients (name, dob, email) VALUES (?, ?, ?)`,
+    [name, dob, email]
+  );
+  const newPatient = await db.get(
+    'SELECT * FROM patients WHERE id = ?',
+    result.lastID
+  );
+  res.status(201).json(newPatient);
 }
 
 module.exports = {
