@@ -10,8 +10,7 @@ import {
   Select,
   TextField,
 } from '@mui/material';
-import { createPatient } from '../api/api';
-
+import * as api from '../api/api';
 interface PatientFormModalProps {
   open: boolean;
   onClose: () => void;
@@ -25,10 +24,13 @@ export function PatientFormModal({ open, onClose }: PatientFormModalProps) {
   const handleSave = async () => {
     if (name && dob && email)
       try {
-        await createPatient(name, dob, email);
+        await api.createPatient(name, dob, email);
+        setName('');
+        setDob('');
+        setEmail('');
         onClose();
       } catch (err) {
-        console.log('Failed to add new patient :(');
+        console.log('Failed to add new patient from modal :(');
       }
   };
 
