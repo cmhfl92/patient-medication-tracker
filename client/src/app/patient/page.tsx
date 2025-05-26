@@ -18,7 +18,7 @@ export default function Patient() {
     <>
       <div className='overflow-hidden px-4 py-8 sm:px-8'>
         <button
-          className='ml-3 hidden rounded-lg bg-gray-100 px-2 py-0.5 text-xs/6 font-semibold whitespace-nowrap text-gray-700 lg:block cursor-pointer'
+          className='ml-3 hidden rounded-lg bg-gray-100 px-2 py-0.5 text-xs/6 font-semibold whitespace-nowrap text-gray-700 lg:block cursor-pointer float-right'
           onClick={openModal}
         >
           Add Patient
