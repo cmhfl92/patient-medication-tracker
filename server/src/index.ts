@@ -10,17 +10,15 @@ const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
-app.use('/patients', patientsRouter);
 
-app.use(errorHandler);
-
-app.get('/patients', async (__, res) => {
+(async () => {
   const db = await initDB();
-  const patients = await db.all('SELECT * FROM patients');
-  res.json(patients);
-});
+  app.locals.db = db;
 
-app.listen(PORT, async () => {
-  await initDB();
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
+  app.use('/patients', patientsRouter);
+  app.use(errorHandler);
+
+  app.listen(PORT, () => {
+    console.log(`server running at http://localhost:${PORT}`);
+  });
+})();

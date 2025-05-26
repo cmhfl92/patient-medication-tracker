@@ -1,8 +1,7 @@
 import { Request, Response } from 'express';
-import { initDB } from '../src/db/db';
 
 async function listPatients(req: Request, res: Response) {
-  const db = await initDB();
+  const db = req.app.locals.db;
 
   const page = parseInt(req.query.page as string) || 1;
   const limit = parseInt(req.query.limit as string) || 20;
@@ -25,7 +24,7 @@ async function listPatients(req: Request, res: Response) {
 }
 
 async function getPatientById(req: Request, res: Response) {
-  const db = await initDB();
+  const db = req.app.locals.db;
   const id = parseInt(req.params.id, 10);
   const patient = await db.get('SELECT * FROM patients WHERE id = ?', [id]);
 
@@ -39,7 +38,7 @@ async function getPatientById(req: Request, res: Response) {
 }
 
 async function createPatient(req: Request, res: Response) {
-  const db = await initDB();
+  const db = req.app.locals.db;
   const { name, dob, email } = req.body;
 
   if (!name || typeof name !== 'string') {
