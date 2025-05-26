@@ -1,6 +1,6 @@
 # 🩺 Patient Medication Tracker
 
-A full-stack healthcare app for tracking patients, medications, and prescriptions (with faux data of course). Built with **Next.js**, **Node.js**, **TypeScript**, and **SQLite**.
+A full-stack healthcare app for tracking patients, medications, and prescriptions. Built with **Next.js**, **Node.js**, **TypeScript**, and **SQLite**.
 
 ---
 
