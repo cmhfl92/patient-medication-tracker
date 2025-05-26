@@ -2,7 +2,7 @@
 
 import { PatientInfo } from '../types/patient';
 
-const BASE_URL = 'https://localhost:3001/patient'; //'/patient'?
+const BASE_URL = 'http://localhost:3001/patients'; //'/patient'?
 
 //patient api
 export async function getPatients(): Promise<PatientInfo[]> {

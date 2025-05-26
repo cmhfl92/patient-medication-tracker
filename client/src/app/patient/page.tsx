@@ -44,23 +44,32 @@ export default function Patient() {
             </tr>
           </thead>
           <tbody className='bg-white dark:bg-gray-800'>
-            <tr>
-              <td className='border border-gray-200 p-4 pl-8 text-gray-500 dark:border-gray-600 dark:text-gray-400'>
-                1
-              </td>
-              <td className='border border-gray-200 p-4 pl-8 text-gray-500 dark:border-gray-600 dark:text-gray-400'>
-                Firstname, Lastname
-              </td>
-              <td className='border border-gray-200 p-4 pl-8 text-gray-500 dark:border-gray-600 dark:text-gray-400'>
-                6-9-1964
-              </td>
-              <td className='border border-gray-200 p-4 pl-8 text-gray-500 dark:border-gray-600 dark:text-gray-400'>
-                c@c.com
-              </td>
-            </tr>
+            {patients.map(patient => (
+              <tr key={patient.id}>
+                <td className='border border-gray-200 p-4 pl-8 text-gray-500 dark:border-gray-600 dark:text-gray-400'>
+                  {patient.id}
+                </td>
+                <td className='border border-gray-200 p-4 pl-8 text-gray-500 dark:border-gray-600 dark:text-gray-400'>
+                  {patient.name}
+                </td>
+                <td className='border border-gray-200 p-4 pl-8 text-gray-500 dark:border-gray-600 dark:text-gray-400'>
+                  {patient.dob}
+                </td>
+                <td className='border border-gray-200 p-4 pl-8 text-gray-500 dark:border-gray-600 dark:text-gray-400'>
+                  {patient.email}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
-        <PatientFormModal open={isModalOpen} onClose={closeModal} />
+        <PatientFormModal
+          open={isModalOpen}
+          onClose={closeModal}
+          onSave={() => {
+            api.getPatients().then(setPatients);
+            closeModal();
+          }}
+        />
       </div>
     </>
   );

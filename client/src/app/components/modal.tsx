@@ -14,9 +14,14 @@ import * as api from '../api/api';
 interface PatientFormModalProps {
   open: boolean;
   onClose: () => void;
+  onSave: () => void;
 }
 
-export function PatientFormModal({ open, onClose }: PatientFormModalProps) {
+export function PatientFormModal({
+  open,
+  onClose,
+  onSave,
+}: PatientFormModalProps) {
   const [name, setName] = useState<string>('');
   const [dob, setDob] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -28,7 +33,7 @@ export function PatientFormModal({ open, onClose }: PatientFormModalProps) {
         setName('');
         setDob('');
         setEmail('');
-        onClose();
+        onSave();
       } catch (err) {
         console.log('Failed to add new patient from modal :(');
       }
