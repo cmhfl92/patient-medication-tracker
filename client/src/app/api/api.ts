@@ -2,7 +2,7 @@
 
 import { PaginatedPatientsResponse, PatientInfo } from '../types/patient';
 
-const BASE_URL = 'http://localhost:3001/patients'; //'/patient'?
+const BASE_URL = 'http://localhost:3001/patients';
 
 //patient api
 export async function getPatients(
