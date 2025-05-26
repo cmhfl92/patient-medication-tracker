@@ -4,7 +4,7 @@ A full-stack healthcare app for tracking patients, medications, and prescription
 
 ---
 
-## 🚀 Tech Stack
+## Tech Stack
 
 ![React](https://img.shields.io/badge/Frontend-Next.js-blue)
 ![Backend](https://img.shields.io/badge/Backend-Express.js-lightgrey)
@@ -13,22 +13,22 @@ A full-stack healthcare app for tracking patients, medications, and prescription
 
 ---
 
-## 📦 Features
+## Features
 
-- ✅ Add and view patients
-- 💊 Track medication details (name, dosage, frequency, cost)
-- 📋 Associate prescriptions to patients
-- 🏥 Toggle medication status (active/discontinued)
-
----
-
-## 🧑‍💻 Live Demo
-
-Coming soon — local setup instructions below ⬇️
+- Add and view patients
+- Track medication details (name, dosage, frequency, cost)
+- Associate prescriptions to patients
+- Toggle medication status (active/discontinued)
 
 ---
 
-## 🛠️ Local Setup
+## Live Demo
+
+Coming soon — local setup instructions below
+
+---
+
+## Local Setup
 
 ### Backend
 
