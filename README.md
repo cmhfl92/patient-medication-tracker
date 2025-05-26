@@ -14,6 +14,7 @@ A full-stack healthcare app for tracking patients, medications, and prescription
 - **Testing:** [Jest](https://jestjs.io/) + [Testing Library](https://testing-library.com/)
 - **Express:** [Express](https://expressjs.com/)
 - **NodeJS:** [Node.js](https://nodejs.org/en)
+- **SQLite:** [SQLite](https://www.sqlite.org/)
 - **Material UI:** [Material UI](https://mui.com/material-ui/)
 
 ---
