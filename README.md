@@ -6,10 +6,15 @@ A full-stack healthcare app for tracking patients, medications, and prescription
 
 ## Tech Stack
 
-![React](https://img.shields.io/badge/Frontend-Next.js-blue)
-![Backend](https://img.shields.io/badge/Backend-Express.js-lightgrey)
-![DB](https://img.shields.io/badge/Database-SQLite-success)
-![Language](https://img.shields.io/badge/Language-TypeScript-blueviolet)
+- **Javascript Library:** [React](https://react.dev/)
+- **Framework:** [Next.js](https://nextjs.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **RTK Query:** [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
+- **Redux ToolKit:** [Redux ToolKit](https://redux-toolkit.js.org/)
+- **Testing:** [Jest](https://jestjs.io/) + [Testing Library](https://testing-library.com/)
+- **Express:** [Express](https://expressjs.com/)
+- **NodeJS:** [Node.js](https://nodejs.org/en)
+- **Material UI:** [Material UI](https://mui.com/material-ui/)
 
 ---
 
