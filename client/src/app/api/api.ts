@@ -24,5 +24,5 @@ export async function createPatient(
   if (!res.ok) throw new Error('Failed to create new patient');
   return res.json();
 }
-//edit patient info?
+//edit patient info
 //delete patient

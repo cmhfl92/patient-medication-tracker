@@ -4,10 +4,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
   TextField,
 } from '@mui/material';
 import * as api from '../api/api';
@@ -33,7 +29,7 @@ export function PatientFormModal({
         setName('');
         setDob('');
         setEmail('');
-        onSave();
+        onSave(); //mutates when saved
       } catch (err) {
         console.log('Failed to add new patient from modal :(');
       }
