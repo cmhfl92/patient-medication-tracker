@@ -3,8 +3,25 @@ import { initDB } from '../src/db/db';
 
 async function listPatients(req: Request, res: Response) {
   const db = await initDB();
-  const patients = await db.all('SELECT * FROM patients');
-  res.json(patients);
+
+  const page = parseInt(req.query.page as string) || 1;
+  const limit = parseInt(req.query.limit as string) || 20;
+  const offset = (page - 1) * limit;
+
+  const patients = await db.all('SELECT * FROM patients LIMIT ? OFFSET ?', [
+    limit,
+    offset,
+  ]);
+
+  const total = await db.get('SELECT COUNT(*) as count FROM patients');
+
+  res.json({
+    data: patients,
+    page,
+    limit,
+    total: total.count,
+    totalPages: Math.ceil(total.count / limit),
+  });
 }
 
 async function getPatientById(req: Request, res: Response) {
