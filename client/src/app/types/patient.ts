@@ -4,3 +4,11 @@ export interface PatientInfo {
   dob: string;
   email: string;
 }
+
+export interface PaginatedPatientsResponse {
+  data: PatientInfo[];
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}

@@ -1,14 +1,18 @@
 //get patients
 
-import { PatientInfo } from '../types/patient';
+import { PaginatedPatientsResponse, PatientInfo } from '../types/patient';
 
 const BASE_URL = 'http://localhost:3001/patients'; //'/patient'?
 
 //patient api
-export async function getPatients(): Promise<PatientInfo[]> {
-  const res = await fetch(BASE_URL);
+export async function getPatients(
+  page = 1,
+  limit = 20
+): Promise<PaginatedPatientsResponse> {
+  const res = await fetch(`${BASE_URL}?page=${page}&limit=${limit}`);
   if (!res.ok) throw new Error('Failed to get patients');
-  return res.json();
+  const data = await res.json();
+  return data;
 }
 //post patient form
 export async function createPatient(

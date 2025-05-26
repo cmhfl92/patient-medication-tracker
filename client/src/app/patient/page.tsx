@@ -5,15 +5,24 @@ import * as api from '../api/api';
 import { PatientFormModal } from '../components/modal';
 
 export default function Patient() {
+  const [page, setPage] = useState<number>(1);
   const [patients, setPatients] = useState<PatientInfo[]>([]);
+  const [totalPages, setTotalPages] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
-    api.getPatients().then(setPatients).catch(console.error);
-  }, []);
+    api
+      .getPatients(page)
+      .then(res => {
+        setPatients(res.data);
+        setTotalPages(res.totalPages);
+      })
+      .catch(console.error);
+  }, [page]);
+
   return (
     <>
       <div className='overflow-hidden px-4 py-8 sm:px-8'>
@@ -62,11 +71,33 @@ export default function Patient() {
             ))}
           </tbody>
         </table>
+        <span className='mt-6 flex justify-center gap-4 items-center'>
+          <button
+            onClick={() => setPage(p => Math.max(p - 1, 1))}
+            disabled={page === 1}
+            className='rounded px-3 py-1 bg-gray-200 text-sm text-gray-800 disabled:opacity-50'
+          >
+            ⬅️ Previous
+          </button>
+          <span className='text-sm text-gray-600'>
+            Page {page} of {totalPages}
+          </span>
+          <button
+            onClick={() => setPage(p => Math.min(p + 1, totalPages))}
+            disabled={page === totalPages}
+            className='rounded px-3 py-1 bg-gray-200 text-sm text-gray-800 disabled:opacity-50'
+          >
+            Next ➡️
+          </button>
+        </span>
         <PatientFormModal
           open={isModalOpen}
           onClose={closeModal}
           onSave={() => {
-            api.getPatients().then(setPatients);
+            api.getPatients(page).then(res => {
+              setPatients(res.data);
+              setTotalPages(res.totalPages);
+            });
             closeModal();
           }}
         />
