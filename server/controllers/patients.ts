@@ -19,6 +19,7 @@ async function getPatientById(req: any, res: any) {
 
   if (!patient) {
     const err = new Error('Patient Not found');
+    //I am missing the err.status since status doesn't exist
     throw err;
   }
   res.json(patient);
@@ -37,6 +38,7 @@ async function createPatient(req: any, res: any) {
   }
   if (typeof email !== 'string') {
     const err = new Error('Email is required!');
+    //I am missing the err.status since status doesn't exist
     throw err;
   }
   const patient = { id: nextId++, name, dob, email };
