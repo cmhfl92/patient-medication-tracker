@@ -5,6 +5,11 @@ CREATE TABLE IF NOT EXISTS patients (
   email TEXT
 );
 
+--index for Patients Table
+-- We frequently query/search by email/name in searching/filtering tools when using B-Tree index
+CREATE INDEX IF NOT EXISTS idx_patients_email ON patients(email);
+CREATE INDEX IF NOT EXISTS idx_patients_name ON patients(name);
+
 CREATE TABLE IF NOT EXISTS medications (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL,
